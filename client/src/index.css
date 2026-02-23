@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ============================================
-   GTA V CINEMATIC THEME - Los Santos Sunset
+   GTA VI VICE CITY THEME - Tropical Paradise
    ============================================ */
 
 /* Base styles */
@@ -19,57 +19,69 @@ html {
 
 body {
   font-family: 'Inter', 'Poppins', sans-serif;
-  background-color: #0B0D10;
-  color: #E8EDF2;
+  background-color: #0A1628;
+  color: #F0F4F8;
   overflow-x: hidden;
 }
 
-/* Custom scrollbar - Teal accent */
+/* Vice City Background */
+.vice-city-bg {
+  background-image: url('/images/gta-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Custom scrollbar - Tropical teal */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0B0D10;
+  background: #0A1628;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #FFB35C, #FF7A59);
+  background: linear-gradient(180deg, #6BBFB5, #E8A4B8);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #FF7A59, #FFB35C);
+  background: linear-gradient(180deg, #7DD0C6, #F5957A);
 }
 
-/* Selection color - Orange */
+/* Selection color - Tropical pink */
 ::selection {
-  background: #FFB35C;
-  color: #0B0D10;
+  background: #E8A4B8;
+  color: #0A1628;
 }
 
 /* ============================================
-   TYPOGRAPHY - GTA Poster Style
+   TYPOGRAPHY - Vice City Style
    ============================================ */
 @layer components {
   .gta-title {
     @apply font-bebas text-4xl md:text-6xl lg:text-8xl tracking-tight uppercase;
-    text-shadow: 
-      0 0 20px rgba(255, 179, 92, 0.4),
-      0 4px 30px rgba(0, 0, 0, 0.6);
+    background: linear-gradient(135deg, #6BBFB5 0%, #7DD0C6 50%, #E8A4B8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 4px 30px rgba(107, 191, 181, 0.3));
     letter-spacing: 0.02em;
   }
 
-  .gta-title-teal {
+  .gta-title-pink {
     @apply font-bebas text-4xl md:text-6xl lg:text-8xl tracking-tight uppercase;
-    text-shadow: 
-      0 0 20px rgba(25, 194, 199, 0.4),
-      0 4px 30px rgba(0, 0, 0, 0.6);
+    background: linear-gradient(135deg, #E8A4B8 0%, #F5957A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .gta-subtitle {
     @apply font-rajdhani text-xl md:text-2xl tracking-wide uppercase;
-    color: #9AA6B2;
+    color: #8FA3B8;
   }
 
   .gta-text {
@@ -78,40 +90,40 @@ body {
 
   .gta-label {
     @apply font-rajdhani text-sm uppercase tracking-widest;
-    color: #9AA6B2;
+    color: #8FA3B8;
   }
 
-  /* Neon glow effects */
-  .neon-text-orange {
-    text-shadow: 
-      0 0 5px #FFB35C, 
-      0 0 15px #FFB35C, 
-      0 0 30px rgba(255, 179, 92, 0.5);
-  }
-
+  /* Neon glow effects - Tropical */
   .neon-text-teal {
     text-shadow: 
-      0 0 5px #19C2C7, 
-      0 0 15px #19C2C7, 
-      0 0 30px rgba(25, 194, 199, 0.5);
+      0 0 5px #6BBFB5, 
+      0 0 15px #6BBFB5, 
+      0 0 30px rgba(107, 191, 181, 0.5);
   }
 
-  .neon-border-orange {
-    box-shadow: 
-      0 0 5px rgba(255, 179, 92, 0.3), 
-      0 0 15px rgba(255, 179, 92, 0.2),
-      inset 0 0 10px rgba(255, 179, 92, 0.05);
+  .neon-text-pink {
+    text-shadow: 
+      0 0 5px #E8A4B8, 
+      0 0 15px #E8A4B8, 
+      0 0 30px rgba(232, 164, 184, 0.5);
   }
 
   .neon-border-teal {
     box-shadow: 
-      0 0 5px rgba(25, 194, 199, 0.3), 
-      0 0 15px rgba(25, 194, 199, 0.2),
-      inset 0 0 10px rgba(25, 194, 199, 0.05);
+      0 0 5px rgba(107, 191, 181, 0.3), 
+      0 0 15px rgba(107, 191, 181, 0.2),
+      inset 0 0 10px rgba(107, 191, 181, 0.05);
+  }
+
+  .neon-border-pink {
+    box-shadow: 
+      0 0 5px rgba(232, 164, 184, 0.3), 
+      0 0 15px rgba(232, 164, 184, 0.2),
+      inset 0 0 10px rgba(232, 164, 184, 0.05);
   }
 
   /* ============================================
-     BUTTONS - GTA Mission Style
+     BUTTONS - Vice City Style
      ============================================ */
   .gta-btn {
     @apply relative px-8 py-3 font-rajdhani font-semibold text-lg uppercase tracking-wider;
@@ -123,9 +135,9 @@ body {
   .gta-btn:hover {
     @apply bg-gta-teal text-gta-bg;
     box-shadow: 
-      0 0 20px rgba(25, 194, 199, 0.4),
-      0 0 40px rgba(25, 194, 199, 0.2),
-      inset 0 0 20px rgba(25, 194, 199, 0.1);
+      0 0 20px rgba(107, 191, 181, 0.4),
+      0 0 40px rgba(107, 191, 181, 0.2),
+      inset 0 0 20px rgba(107, 191, 181, 0.1);
     transform: translateY(-2px);
   }
 
@@ -135,16 +147,16 @@ body {
 
   .gta-btn-primary {
     @apply relative px-8 py-3 font-rajdhani font-semibold text-lg uppercase tracking-wider;
-    @apply border-2 border-gta-orange text-gta-bg;
-    background: linear-gradient(135deg, #FFB35C 0%, #FF7A59 100%);
+    @apply border-2 border-gta-teal text-gta-bg;
+    background: linear-gradient(135deg, #6BBFB5 0%, #7DD0C6 50%, #E8A4B8 100%);
     clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
     transition: all 0.3s ease-out;
   }
 
   .gta-btn-primary:hover {
     box-shadow: 
-      0 0 25px rgba(255, 179, 92, 0.5),
-      0 0 50px rgba(255, 122, 89, 0.3);
+      0 0 25px rgba(107, 191, 181, 0.5),
+      0 0 50px rgba(232, 164, 184, 0.3);
     transform: translateY(-2px);
     filter: brightness(1.1);
   }
@@ -153,17 +165,30 @@ body {
     transform: translateY(1px) scale(0.98);
   }
 
+  .gta-btn-secondary {
+    @apply relative px-8 py-3 font-rajdhani font-semibold text-lg uppercase tracking-wider;
+    @apply border-2 border-gta-pink text-gta-pink bg-transparent;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    transition: all 0.3s ease-out;
+  }
+
+  .gta-btn-secondary:hover {
+    @apply bg-gta-pink text-gta-bg;
+    box-shadow: 0 0 20px rgba(232, 164, 184, 0.4);
+    transform: translateY(-2px);
+  }
+
   .gta-btn-danger {
     @apply gta-btn border-gta-red text-gta-red;
   }
 
   .gta-btn-danger:hover {
     @apply bg-gta-red text-white;
-    box-shadow: 0 0 20px rgba(255, 59, 59, 0.4);
+    box-shadow: 0 0 20px rgba(232, 90, 90, 0.4);
   }
 
   /* ============================================
-     CARDS - Mission Panel Style
+     CARDS - Vice City Panel Style
      ============================================ */
   .gta-card {
     @apply relative bg-gta-surface/90 backdrop-blur-md;
@@ -341,12 +366,12 @@ body {
     );
   }
 
-  /* Grid background - Teal tint */
+  /* Grid background - Tropical tint */
   .grid-bg {
     background-size: 60px 60px;
     background-image: 
-      linear-gradient(rgba(25, 194, 199, 0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(25, 194, 199, 0.02) 1px, transparent 1px);
+      linear-gradient(rgba(107, 191, 181, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232, 164, 184, 0.02) 1px, transparent 1px);
   }
 
   /* Legacy noise overlay */
@@ -360,19 +385,19 @@ body {
      ============================================ */
   .loading-screen {
     @apply fixed inset-0 z-[100] flex flex-col items-center justify-center;
-    background: linear-gradient(135deg, #0B0D10 0%, #12161C 50%, #0B0D10 100%);
+    background: linear-gradient(135deg, #0A1628 0%, #0F1E32 50%, #0A1628 100%);
   }
 
   .loading-bar-container {
     @apply w-72 h-1.5 bg-gta-darker rounded-full overflow-hidden mt-8;
-    border: 1px solid rgba(255, 179, 92, 0.2);
+    border: 1px solid rgba(107, 191, 181, 0.2);
   }
 
   .loading-bar-fill {
     @apply h-full;
-    background: linear-gradient(90deg, #FFB35C, #FF7A59);
+    background: linear-gradient(90deg, #6BBFB5, #E8A4B8);
     animation: loadingBar 2.5s ease-in-out forwards;
-    box-shadow: 0 0 15px rgba(255, 179, 92, 0.5);
+    box-shadow: 0 0 15px rgba(107, 191, 181, 0.5);
   }
 
   /* ============================================

@@ -68,13 +68,13 @@ const About = () => {
                 {/* Status indicator */}
                 <div className="absolute bottom-2 right-2 flex items-center gap-2 bg-gta-bg/90 px-3 py-1 rounded-full border border-gta-teal/30">
                   <div className="w-2 h-2 rounded-full bg-gta-teal animate-pulse" />
-                  <span className="text-xs font-rajdhani text-gta-teal">Available</span>
+                  <span className="text-xs font-rajdhani text-gta-teal">Available for High-Stakes Projects</span>
                 </div>
               </div>
 
               {/* Name & Role */}
               <h2 className="font-bebas text-3xl text-text-primary mb-1">
-                {profile?.name || 'Your Name'}
+                {profile?.name || 'Mayur Mahadev Gund'}
               </h2>
               <p className="font-rajdhani text-gta-teal mb-4">
                 {profile?.role || 'Full Stack Developer'}
@@ -83,7 +83,7 @@ const About = () => {
               {/* Location */}
               <div className="flex items-center gap-2 text-text-muted mb-6">
                 <MapPin className="w-4 h-4 text-gta-orange" />
-                <span className="text-sm">{profile?.location || 'Los Santos'}</span>
+                <span className="text-sm">{profile?.location || 'Pune (The "Los Santos" of Tech)'}</span>
               </div>
 
               {/* Social Links */}

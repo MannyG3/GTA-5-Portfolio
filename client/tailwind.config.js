@@ -7,33 +7,51 @@ export default {
   theme: {
     extend: {
       colors: {
-        // GTA V Cinematic Color Palette - Sunset + Teal
+        // GTA VI Vice City Tropical Palette
         gta: {
-          // Base colors
-          bg: '#0B0D10',
-          surface: '#12161C',
-          surfaceAlt: '#191F28',
-          darker: '#070809',
+          // Base colors - darker for contrast with bright accents
+          bg: '#0A1628',
+          surface: '#0F1E32',
+          surfaceAlt: '#162640',
+          darker: '#060E1A',
           
-          // Accent colors
-          orange: '#FFB35C',
-          peach: '#FF7A59',
-          teal: '#19C2C7',
-          blue: '#2D7DFF',
-          red: '#FF3B3B',
-          yellow: '#FFD93D',
+          // Primary - Tropical Teal (from water)
+          teal: '#6BBFB5',
+          tealLight: '#7DD0C6',
+          tealDark: '#4DA8A0',
           
-          // Legacy mappings for compatibility
-          dark: '#0B0D10',
-          green: '#FFB35C', // Map green to orange for compatibility
-          cyan: '#19C2C7',
-          pink: '#FF7A59',
+          // Secondary - Sunset Pink/Coral
+          pink: '#E8A4B8',
+          coral: '#F5957A',
+          peach: '#F5D5C5',
+          
+          // Accent - Sky Blue
+          sky: '#7BA3C4',
+          skyLight: '#8BB5D6',
+          
+          // Accent - Purple (palm shadows)
+          purple: '#5C4D7A',
+          indigo: '#4A3F6B',
+          
+          // Warm highlights
+          sand: '#D4A574',
+          gold: '#E8B88A',
+          
+          // Legacy/utility
+          orange: '#F5957A',
+          blue: '#7BA3C4',
+          red: '#E85A5A',
+          yellow: '#F5D580',
+          green: '#6BBFB5',
+          cyan: '#7DD0C6',
+          dark: '#0A1628',
         },
         // Text colors
         text: {
-          primary: '#E8EDF2',
-          muted: '#9AA6B2',
-          dim: '#5A6672',
+          primary: '#F0F4F8',
+          secondary: '#C8D4E0',
+          muted: '#8FA3B8',
+          dim: '#5A7088',
         }
       },
       fontFamily: {
@@ -64,12 +82,16 @@ export default {
       },
       keyframes: {
         glow: {
-          '0%': { boxShadow: '0 0 5px #FFB35C, 0 0 10px #FFB35C, 0 0 15px rgba(255,179,92,0.3)' },
-          '100%': { boxShadow: '0 0 10px #FFB35C, 0 0 25px #FFB35C, 0 0 40px rgba(255,179,92,0.4)' },
+          '0%': { boxShadow: '0 0 5px #6BBFB5, 0 0 10px #6BBFB5, 0 0 15px rgba(107,191,181,0.3)' },
+          '100%': { boxShadow: '0 0 10px #6BBFB5, 0 0 25px #6BBFB5, 0 0 40px rgba(107,191,181,0.4)' },
         },
         glowTeal: {
-          '0%': { boxShadow: '0 0 5px #19C2C7, 0 0 10px #19C2C7, 0 0 15px rgba(25,194,199,0.3)' },
-          '100%': { boxShadow: '0 0 10px #19C2C7, 0 0 25px #19C2C7, 0 0 40px rgba(25,194,199,0.4)' },
+          '0%': { boxShadow: '0 0 5px #6BBFB5, 0 0 10px #6BBFB5, 0 0 15px rgba(107,191,181,0.3)' },
+          '100%': { boxShadow: '0 0 10px #6BBFB5, 0 0 25px #6BBFB5, 0 0 40px rgba(107,191,181,0.4)' },
+        },
+        glowPink: {
+          '0%': { boxShadow: '0 0 5px #E8A4B8, 0 0 10px #E8A4B8, 0 0 15px rgba(232,164,184,0.3)' },
+          '100%': { boxShadow: '0 0 10px #E8A4B8, 0 0 25px #E8A4B8, 0 0 40px rgba(232,164,184,0.4)' },
         },
         flicker: {
           '0%, 100%': { opacity: '1' },

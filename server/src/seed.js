@@ -35,17 +35,26 @@ const seedData = async () => {
 
     // Create Profile
     await Profile.create({
-      name: 'Mayur Gund',
-      role: 'Full Stack Developer | Educator | AI Enthusiast',
-      location: 'Pune, India',
-      bio: 'Welcome to my portfolio, homie! Passionate Computer Engineer and Full Stack Developer skilled in MERN Stack, Data Structures and Algorithms, and Python. Experienced in teaching programming and guiding students as a lecturer and mentor. Adept at building scalable web applications, integrating AI tools, and delivering hands-on learning experiences.',
-      tagline: 'Building stuff & mentoring devs. Currently Available.',
+      name: 'Mayur Mahadev Gund',
+      role: 'Full Stack Developer & Training & Placement Officer',
+      location: 'Pune (The "Los Santos" of Tech)',
+      bio: `The Specialist
+
+Operating out of the AIML Department, Mayur isn't just managing the lab; he's the "Mastermind" behind the infrastructure. As a Training and Placement Officer, he's the one who scouts the talent and sets up the "heists"—connecting high-potential developers with top-tier industry players.
+
+When he isn't optimizing Full Stack architectures or securing the network, he's deep into Ethical Hacking and Cyber Security. Much like a high-level character in Los Santos, he lives by the Atomic Habits code: constant improvement, tactical precision, and a relentless focus on the next big "mission"—whether that's a Gen Z-focused tech project or his own personal health journey.
+
+Skill Tree & Assets
+- Technical Gear: Proficient in AI/ML frameworks and Full Stack deployment.
+- Network: Direct access to industry leads and placement pipelines.
+- Special Ability: "Tactical Scaling" — The ability to move from high-level management to deep-code execution instantly.`,
+      tagline: 'Available for High-Stakes Projects',
       stats: [
-        { label: 'Full Stack', value: 92 },
-        { label: 'Teaching', value: 88 },
-        { label: 'Backend', value: 85 },
-        { label: 'AI/ML', value: 75 },
-        { label: 'Mentorship', value: 90 }
+        { label: 'Full Stack Development Expert', value: 100 },
+        { label: 'Placement & Strategy Mastermind', value: 95 },
+        { label: 'Cyber Security Ghost Mode', value: 93 },
+        { label: 'AIML Operations Commander', value: 96 },
+        { label: 'Tactical Scaling', value: 98 }
       ],
       socials: {
         github: 'https://github.com/MannyG3',

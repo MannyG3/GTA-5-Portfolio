@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronDown, Crosshair, User, MapPin } from 'lucide-react';
+import { ChevronDown, Crosshair, User, MapPin, Palmtree } from 'lucide-react';
 import { profileAPI } from '../services/api';
 
 const Home = () => {
@@ -23,42 +23,41 @@ const Home = () => {
     <div className="min-h-screen flex flex-col">
       {/* Hero Section */}
       <section className="relative flex-1 flex items-center justify-center min-h-screen px-4">
-        {/* Sunset gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-gta-orange/5 via-gta-bg to-gta-bg" />
+        {/* Vice City tropical gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-gta-sky/10 via-transparent to-gta-purple/10" />
         
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Sunset glow */}
+          {/* Tropical sunset glow */}
           <motion.div
-            className="absolute -top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full"
+            className="absolute -top-20 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full"
             style={{
-              background: 'radial-gradient(ellipse at center, rgba(255,179,92,0.15) 0%, rgba(255,122,89,0.08) 40%, transparent 70%)',
+              background: 'radial-gradient(ellipse at center, rgba(232,164,184,0.15) 0%, rgba(107,191,181,0.08) 40%, transparent 70%)',
             }}
             animate={{
-              opacity: [0.6, 0.8, 0.6],
+              opacity: [0.5, 0.7, 0.5],
               scale: [1, 1.05, 1],
             }}
-            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
           />
           
-          {/* Teal accent */}
+          {/* Teal water reflection */}
           <motion.div
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gta-teal/5 rounded-full blur-3xl"
+            className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-gta-teal/10 to-transparent"
             animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.2, 0.4, 0.2],
+              opacity: [0.3, 0.5, 0.3],
             }}
-            transition={{ duration: 5, repeat: Infinity }}
+            transition={{ duration: 4, repeat: Infinity }}
           />
           
-          {/* Orange accent left */}
+          {/* Pink accent right */}
           <motion.div
-            className="absolute top-1/3 left-10 w-64 h-64 bg-gta-orange/5 rounded-full blur-3xl"
+            className="absolute top-1/4 right-10 w-80 h-80 bg-gta-pink/8 rounded-full blur-3xl"
             animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.2, 0.3, 0.2],
+              scale: [1, 1.2, 1],
+              opacity: [0.2, 0.35, 0.2],
             }}
-            transition={{ duration: 7, repeat: Infinity }}
+            transition={{ duration: 6, repeat: Infinity }}
           />
         </div>
 
@@ -68,11 +67,11 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gta-teal/30 bg-gta-surface/50 backdrop-blur-sm mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gta-pink/30 bg-gta-surface/50 backdrop-blur-sm mb-6"
           >
-            <MapPin className="w-4 h-4 text-gta-teal" />
-            <span className="font-rajdhani text-gta-teal text-sm tracking-widest uppercase">
-              Welcome to Los Santos
+            <MapPin className="w-4 h-4 text-gta-pink" />
+            <span className="font-rajdhani text-gta-pink text-sm tracking-widest uppercase">
+              Welcome to Vice City
             </span>
           </motion.div>
 
@@ -126,20 +125,19 @@ const Home = () => {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="text-gta-orange/50"
+            className="text-gta-teal/50"
           >
             <ChevronDown className="w-8 h-8" />
           </motion.div>
         </motion.div>
 
-        {/* Corner decorations - now with gradient colors */}
-        <div className="absolute top-20 left-4 md:left-8 w-20 h-20 border-l-2 border-t-2 border-gta-orange/30" />
+        {/* Corner decorations - Vice City colors */}
+        <div className="absolute top-20 left-4 md:left-8 w-20 h-20 border-l-2 border-t-2 border-gta-pink/30" />
         <div className="absolute top-20 right-4 md:right-8 w-20 h-20 border-r-2 border-t-2 border-gta-teal/30" />
         <div className="absolute bottom-20 left-4 md:left-8 w-20 h-20 border-l-2 border-b-2 border-gta-teal/30" />
-        <div className="absolute bottom-20 right-4 md:right-8 w-20 h-20 border-r-2 border-b-2 border-gta-orange/30" />
+        <div className="absolute bottom-20 right-4 md:right-8 w-20 h-20 border-r-2 border-b-2 border-gta-pink/30" />
         
-        {/* City silhouette at bottom */}
-        <div className="city-silhouette" />
+        {/* Palm tree silhouettes would go here */}
       </section>
     </div>
   );

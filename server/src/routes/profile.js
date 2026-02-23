@@ -13,23 +13,30 @@ router.get('/', async (req, res) => {
     // Create default profile if none exists
     if (!profile) {
       profile = await Profile.create({
-        name: 'Your Name',
-        role: 'Full Stack Developer',
-        location: 'Los Santos',
-        bio: 'Welcome to my portfolio',
-        tagline: 'Full Stack Developer | MERN | AI | Robotics',
+        name: 'Mayur Mahadev Gund',
+        role: 'Full Stack Developer & Training & Placement Officer',
+        location: 'Pune (The "Los Santos" of Tech)',
+        bio: `The Specialist
+
+Operating out of the AIML Department, Mayur isn't just managing the lab; he's the "Mastermind" behind the infrastructure. As a Training and Placement Officer, he's the one who scouts the talent and sets up the "heists"—connecting high-potential developers with top-tier industry players.
+
+When he isn't optimizing Full Stack architectures or securing the network, he's deep into Ethical Hacking and Cyber Security. Much like a high-level character in Los Santos, he lives by the Atomic Habits code: constant improvement, tactical precision, and a relentless focus on the next big "mission".
+
+Special Ability: "Tactical Scaling" — The ability to move from high-level management to deep-code execution instantly.`,
+        tagline: 'Available for High-Stakes Projects',
         stats: [
-          { label: 'Coding', value: 90 },
-          { label: 'UI/UX', value: 75 },
-          { label: 'Backend', value: 88 },
-          { label: 'Problem Solving', value: 85 }
+          { label: 'Full Stack Development Expert', value: 100 },
+          { label: 'Placement & Strategy Mastermind', value: 95 },
+          { label: 'Cyber Security Ghost Mode', value: 93 },
+          { label: 'AIML Operations Commander', value: 96 },
+          { label: 'Tactical Scaling', value: 98 }
         ],
         socials: {
-          github: '',
-          linkedin: '',
+          github: 'https://github.com/MannyG3',
+          linkedin: 'https://www.linkedin.com/in/mayurgund99/',
           twitter: '',
           instagram: '',
-          email: ''
+          email: 'mayurgund3333@gmail.com'
         }
       });
     }
