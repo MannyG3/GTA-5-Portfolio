@@ -9,6 +9,17 @@ import { messagesAPI, profileAPI } from '../services/api';
 import SectionTitle from '../components/SectionTitle';
 import SocialLinks from '../components/SocialLinks';
 
+const fallbackProfile = {
+  name: 'Mayur Mahadev Gund',
+  role: 'Full Stack Developer & Training & Placement Officer',
+  location: 'Pune (The "Los Santos" of Tech)',
+  socials: {
+    github: 'https://github.com/MannyG3',
+    linkedin: 'https://www.linkedin.com/in/mayurgund99/',
+    email: 'mayurgund3333@gmail.com',
+  },
+};
+
 const messageSchema = z.object({
   name: z.string().min(1, 'Name is required').max(100),
   email: z.string().email('Invalid email address'),
@@ -35,6 +46,7 @@ const Contact = () => {
         setProfile(response.data);
       } catch (error) {
         console.error('Failed to fetch profile:', error);
+        setProfile(fallbackProfile);
       }
     };
     fetchProfile();
@@ -96,18 +108,18 @@ const Contact = () => {
                     </span>
                   </div>
                   <h3 className="font-bebas text-2xl text-text-primary">
-                    {profile?.name || 'Developer'}
+                    {profile?.name || fallbackProfile.name}
                   </h3>
                   <p className="font-rajdhani text-text-muted">
-                    {profile?.role || 'Full Stack Developer'}
+                    {profile?.role || fallbackProfile.role}
                   </p>
                 </div>
 
                 {/* Contact options */}
                 <div className="space-y-4 mb-6">
-                  {profile?.socials?.email && (
+                  {(profile?.socials?.email || fallbackProfile.socials.email) && (
                     <a
-                      href={`mailto:${profile.socials.email}`}
+                      href={`mailto:${profile?.socials?.email || fallbackProfile.socials.email}`}
                       className="flex items-center gap-4 p-4 bg-gta-bg rounded-lg border border-gta-surfaceAlt hover:border-gta-orange transition-colors group"
                     >
                       <div className="w-10 h-10 rounded-full bg-gta-orange/20 flex items-center justify-center">
@@ -116,20 +128,20 @@ const Contact = () => {
                       <div>
                         <p className="text-xs text-text-dim">Email</p>
                         <p className="text-text-primary group-hover:text-gta-orange transition-colors">
-                          {profile.socials.email}
+                          {profile?.socials?.email || fallbackProfile.socials.email}
                         </p>
                       </div>
                     </a>
                   )}
 
-                  {profile?.location && (
+                  {(profile?.location || fallbackProfile.location) && (
                     <div className="flex items-center gap-4 p-4 bg-gta-bg rounded-lg border border-gta-surfaceAlt">
                       <div className="w-10 h-10 rounded-full bg-gta-teal/20 flex items-center justify-center">
                         <MapPin className="w-5 h-5 text-gta-teal" />
                       </div>
                       <div>
                         <p className="text-xs text-text-dim">Location</p>
-                        <p className="text-text-primary">{profile.location}</p>
+                        <p className="text-text-primary">{profile?.location || fallbackProfile.location}</p>
                       </div>
                     </div>
                   )}
@@ -137,7 +149,7 @@ const Contact = () => {
 
                 {/* Social links */}
                 <div className="flex justify-center">
-                  <SocialLinks socials={profile?.socials} />
+                  <SocialLinks socials={profile?.socials || fallbackProfile.socials} />
                 </div>
               </div>
 

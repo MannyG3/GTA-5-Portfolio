@@ -4,6 +4,11 @@ import { motion } from 'framer-motion';
 import { ChevronDown, Crosshair, User, MapPin, Palmtree } from 'lucide-react';
 import { profileAPI } from '../services/api';
 
+const fallbackProfile = {
+  name: 'Mayur Mahadev Gund',
+  tagline: 'Available for High-Stakes Projects',
+};
+
 const Home = () => {
   const [profile, setProfile] = useState(null);
 
@@ -14,6 +19,7 @@ const Home = () => {
         setProfile(response.data);
       } catch (error) {
         console.error('Failed to fetch profile:', error);
+        setProfile(fallbackProfile);
       }
     };
     fetchProfile();
@@ -82,8 +88,8 @@ const Home = () => {
             transition={{ delay: 0.4, duration: 0.5 }}
             className="font-bebas text-6xl md:text-8xl lg:text-9xl tracking-wider mb-6"
           >
-            <span className="glitch gta-title" data-text={profile?.name || 'YOUR NAME'}>
-              {profile?.name || 'YOUR NAME'}
+            <span className="glitch gta-title" data-text={profile?.name || fallbackProfile.name}>
+              {profile?.name || fallbackProfile.name}
             </span>
           </motion.h1>
 
@@ -94,7 +100,7 @@ const Home = () => {
             transition={{ delay: 0.6 }}
             className="font-rajdhani text-xl md:text-2xl text-text-muted mb-12"
           >
-            {profile?.tagline || 'Full Stack Developer | MERN | AI | Robotics'}
+            {profile?.tagline || fallbackProfile.tagline}
           </motion.p>
 
           {/* CTA Buttons */}

@@ -6,6 +6,29 @@ import SectionTitle from '../components/SectionTitle';
 import SocialLinks from '../components/SocialLinks';
 import SkillBar from '../components/SkillBar';
 
+const fallbackProfile = {
+  name: 'Mayur Mahadev Gund',
+  role: 'Full Stack Developer & Training & Placement Officer',
+  location: 'Pune (The "Los Santos" of Tech)',
+  bio: `The Specialist
+
+Operating out of the AIML Department, Mayur isn't just managing the lab; he's the "Mastermind" behind the infrastructure. As a Training and Placement Officer, he's the one who scouts the talent and sets up the "heists"—connecting high-potential developers with top-tier industry players.
+
+When he isn't optimizing Full Stack architectures or securing the network, he's deep into Ethical Hacking and Cyber Security. Much like a high-level character in Los Santos, he lives by the Atomic Habits code: constant improvement, tactical precision, and a relentless focus on the next big mission.`,
+  socials: {
+    github: 'https://github.com/MannyG3',
+    linkedin: 'https://www.linkedin.com/in/mayurgund99/',
+    email: 'mayurgund3333@gmail.com',
+  },
+  stats: [
+    { label: 'Full Stack Development Expert', value: 100 },
+    { label: 'Placement & Strategy Mastermind', value: 95 },
+    { label: 'Cyber Security Ghost Mode', value: 93 },
+    { label: 'AIML Operations Commander', value: 96 },
+    { label: 'Tactical Scaling', value: 98 },
+  ],
+};
+
 const About = () => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -17,6 +40,7 @@ const About = () => {
         setProfile(response.data);
       } catch (error) {
         console.error('Failed to fetch profile:', error);
+        setProfile(fallbackProfile);
       } finally {
         setLoading(false);
       }
@@ -74,20 +98,20 @@ const About = () => {
 
               {/* Name & Role */}
               <h2 className="font-bebas text-3xl text-text-primary mb-1">
-                {profile?.name || 'Mayur Mahadev Gund'}
+                {profile?.name || fallbackProfile.name}
               </h2>
               <p className="font-rajdhani text-gta-teal mb-4">
-                {profile?.role || 'Full Stack Developer'}
+                {profile?.role || fallbackProfile.role}
               </p>
 
               {/* Location */}
               <div className="flex items-center gap-2 text-text-muted mb-6">
                 <MapPin className="w-4 h-4 text-gta-orange" />
-                <span className="text-sm">{profile?.location || 'Pune (The "Los Santos" of Tech)'}</span>
+                <span className="text-sm">{profile?.location || fallbackProfile.location}</span>
               </div>
 
               {/* Social Links */}
-              <SocialLinks socials={profile?.socials} />
+              <SocialLinks socials={profile?.socials || fallbackProfile.socials} />
             </div>
           </motion.div>
 
@@ -105,7 +129,7 @@ const About = () => {
                 Biography
               </h3>
               <p className="text-text-secondary leading-relaxed whitespace-pre-line">
-                {profile?.bio || 'No bio available.'}
+                {profile?.bio || fallbackProfile.bio}
               </p>
             </div>
 
@@ -116,7 +140,7 @@ const About = () => {
                 Character Stats
               </h3>
               <div className="grid md:grid-cols-2 gap-x-8">
-                {profile?.stats?.map((stat, index) => (
+                {(profile?.stats || fallbackProfile.stats).map((stat, index) => (
                   <SkillBar
                     key={stat.label}
                     name={stat.label}
