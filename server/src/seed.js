@@ -63,7 +63,7 @@ Skill Tree & Assets
         instagram: '',
         email: 'mayurgund3333@gmail.com'
       },
-      profileImageUrl: ''
+      profileImageUrl: '/images/profile-mayur.png'
     });
     console.log('📋 Profile created');
 

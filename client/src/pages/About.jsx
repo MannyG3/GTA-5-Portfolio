@@ -10,6 +10,7 @@ const fallbackProfile = {
   name: 'Mayur Mahadev Gund',
   role: 'Full Stack Developer & Training & Placement Officer',
   location: 'Pune (The "Los Santos" of Tech)',
+  profileImageUrl: '/images/profile-mayur.png',
   bio: `The Specialist
 
 Operating out of the AIML Department, Mayur isn't just managing the lab; he's the "Mastermind" behind the infrastructure. As a Training and Placement Officer, he's the one who scouts the talent and sets up the "heists"—connecting high-potential developers with top-tier industry players.

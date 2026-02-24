@@ -37,7 +37,8 @@ Special Ability: "Tactical Scaling" — The ability to move from high-level mana
           twitter: '',
           instagram: '',
           email: 'mayurgund3333@gmail.com'
-        }
+        },
+        profileImageUrl: '/images/profile-mayur.png'
       });
     }
     
