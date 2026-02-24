@@ -70,46 +70,42 @@ Skill Tree & Assets
     // Create Skills
     await Skill.insertMany([
       {
-        category: 'Frontend',
+        category: 'Front-End',
         order: 1,
         items: [
-          { name: 'React', level: 92, icon: 'react' },
-          { name: 'JavaScript', level: 90, icon: 'javascript' },
-          { name: 'TypeScript', level: 85, icon: 'typescript' },
-          { name: 'HTML5', level: 95, icon: 'html5' },
-          { name: 'CSS3', level: 90, icon: 'css3' },
-          { name: 'TailwindCSS', level: 88, icon: 'tailwind' },
-          { name: 'Bootstrap', level: 80, icon: 'bootstrap' }
+          { name: 'React.js', level: 96, icon: 'react' },
+          { name: 'Redux / Context API', level: 92, icon: 'redux' },
+          { name: 'Tailwind CSS / Material UI', level: 94, icon: 'tailwind' },
+          { name: 'Next.js', level: 88, icon: 'nextjs' }
         ]
       },
       {
-        category: 'Backend',
+        category: 'Back-End',
         order: 2,
         items: [
-          { name: 'Node.js', level: 88, icon: 'nodejs' },
-          { name: 'Express.js', level: 85, icon: 'express' },
-          { name: 'Python', level: 82, icon: 'python' },
-          { name: 'GraphQL', level: 70, icon: 'graphql' }
+          { name: 'Node.js & Express', level: 94, icon: 'nodejs' },
+          { name: 'Python (Django/Flask)', level: 90, icon: 'python' },
+          { name: 'RESTful APIs', level: 96, icon: 'api' },
+          { name: 'Socket.io', level: 89, icon: 'socketio' }
         ]
       },
       {
         category: 'Database',
         order: 3,
         items: [
-          { name: 'MongoDB', level: 85, icon: 'mongodb' },
-          { name: 'PostgreSQL', level: 80, icon: 'postgresql' },
-          { name: 'MySQL', level: 75, icon: 'mysql' },
-          { name: 'SQLite', level: 70, icon: 'sqlite' }
+          { name: 'MongoDB', level: 93, icon: 'mongodb' },
+          { name: 'PostgreSQL / MySQL', level: 90, icon: 'postgresql' },
+          { name: 'Redis', level: 86, icon: 'redis' }
         ]
       },
       {
-        category: 'Tools',
+        category: 'Dev-Ops & Security',
         order: 4,
         items: [
-          { name: 'Git', level: 90, icon: 'git' },
-          { name: 'Socket.IO', level: 80, icon: 'socketio' },
-          { name: 'REST APIs', level: 88, icon: 'api' },
-          { name: 'TensorFlow', level: 65, icon: 'tensorflow' }
+          { name: 'Cyber Security & Ethical Hacking', level: 91, icon: 'security' },
+          { name: 'Docker & Kubernetes', level: 88, icon: 'docker' },
+          { name: 'AWS / Azure', level: 84, icon: 'cloud' },
+          { name: 'Git / GitHub', level: 97, icon: 'git' }
         ]
       }
     ]);
