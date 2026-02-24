@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 const MainLayout = () => {
   return (
     <div className="min-h-screen bg-gta-bg relative overflow-x-hidden">
-      {/* Vice City Background Image */}
+      {/* Los Santos Background Image */}
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
         style={{ 

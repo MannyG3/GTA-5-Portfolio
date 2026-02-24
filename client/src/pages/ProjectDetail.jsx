@@ -14,6 +14,7 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { projectsAPI } from '../services/api';
+import { fallbackMissions } from '../data/missions';
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -26,12 +27,16 @@ const ProjectDetail = () => {
     const fetchProject = async () => {
       try {
         const response = await projectsAPI.getBySlug(slug);
-        setProject(response.data);
-        
-        // Mission accepted animation
-        setTimeout(() => setMissionAccepted(true), 500);
+        if (response.data) {
+          setProject(response.data);
+        } else {
+          const fallbackProject = fallbackMissions.find((mission) => mission.slug === slug) || null;
+          setProject(fallbackProject);
+        }
       } catch (error) {
         console.error('Failed to fetch project:', error);
+        const fallbackProject = fallbackMissions.find((mission) => mission.slug === slug) || null;
+        setProject(fallbackProject);
       } finally {
         setLoading(false);
       }
@@ -69,20 +74,51 @@ const ProjectDetail = () => {
     setCurrentImageIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
   };
 
+  const threatLevel = project.difficulty >= 5
+    ? 'HIGH'
+    : project.difficulty >= 4
+      ? 'MEDIUM-HIGH'
+      : project.difficulty >= 3
+        ? 'MEDIUM'
+        : 'LOW';
+
+  const statusLabel = project.featured
+    ? 'FEATURED'
+    : project.status === 'in-progress'
+      ? 'IN PROGRESS'
+      : 'COMPLETED';
+
+  const statusBadgeClass = project.featured
+    ? 'bg-gradient-to-r from-gta-orange to-gta-peach text-gta-bg'
+    : project.status === 'in-progress'
+      ? 'bg-gta-teal/90 text-gta-bg'
+      : 'bg-white/15 text-white/85 border border-white/20';
+
+  const openMissionLink = (url) => {
+    if (!url) return;
+
+    setMissionAccepted(true);
+    setTimeout(() => {
+      window.open(url, '_blank', 'noopener,noreferrer');
+      setMissionAccepted(false);
+    }, 800);
+  };
+
   return (
     <div className="min-h-screen pt-20 lg:pt-8 pb-16">
       {/* Mission Accepted overlay */}
       {missionAccepted && (
         <motion.div
-          initial={{ opacity: 1, scale: 1.2 }}
-          animate={{ opacity: 0, scale: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-gta-bg pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="mission-accepted-overlay fixed inset-0 z-50 flex items-center justify-center bg-gta-bg/95 pointer-events-none"
         >
           <motion.div
-            initial={{ scale: 0.5, opacity: 0 }}
+            initial={{ scale: 0.96, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.2 }}
             className="text-center"
           >
             <h2 className="font-bebas text-6xl md:text-8xl text-gta-orange tracking-wider">
@@ -110,9 +146,19 @@ const ProjectDetail = () => {
         >
           <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
             <div>
+              {project.code && (
+                <p className="font-rajdhani text-sm uppercase tracking-[0.3em] text-gta-orange/80 mb-2">
+                  {project.code}
+                </p>
+              )}
               <h1 className="font-bebas text-5xl md:text-6xl text-text-primary mb-2">
                 {project.title}
               </h1>
+              {project.codename && (
+                <p className="font-rajdhani text-lg uppercase tracking-wide text-text-dim mb-2">
+                  {project.codename}
+                </p>
+              )}
               <p className="font-rajdhani text-xl text-text-muted">
                 {project.shortDesc}
               </p>
@@ -120,6 +166,9 @@ const ProjectDetail = () => {
             
             {/* Difficulty */}
             <div className="flex flex-col items-end">
+              <span className={`mb-2 px-3 py-1 text-xs font-rajdhani font-bold tracking-wider uppercase ${statusBadgeClass}`}>
+                {statusLabel}
+              </span>
               <span className="font-rajdhani text-sm text-text-dim mb-1">Difficulty</span>
               <div className="flex gap-1">
                 {[1, 2, 3, 4, 5].map((level) => (
@@ -133,6 +182,9 @@ const ProjectDetail = () => {
                   />
                 ))}
               </div>
+              <span className="font-rajdhani text-xs uppercase tracking-wider text-text-dim mt-2">
+                THREAT LEVEL: {threatLevel}
+              </span>
             </div>
           </div>
 
@@ -150,17 +202,14 @@ const ProjectDetail = () => {
 
           {/* Links */}
           <div className="flex flex-wrap gap-4">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="gta-btn-primary flex items-center gap-2"
-              >
-                <ExternalLink className="w-5 h-5" />
-                View Live
-              </a>
-            )}
+            <button
+              onClick={() => openMissionLink(project.liveUrl || project.githubUrl)}
+              className="gta-btn-primary flex items-center gap-2"
+              disabled={!project.liveUrl && !project.githubUrl}
+            >
+              <ExternalLink className="w-5 h-5" />
+              Start Mission
+            </button>
             {project.githubUrl && (
               <a
                 href={project.githubUrl}
@@ -169,7 +218,7 @@ const ProjectDetail = () => {
                 className="gta-btn flex items-center gap-2"
               >
                 <Github className="w-5 h-5" />
-                Source Code
+                View Intel
               </a>
             )}
           </div>
@@ -276,6 +325,54 @@ const ProjectDetail = () => {
                     <li key={index} className="flex items-start gap-2 text-text-secondary text-sm">
                       <span className="text-gta-orange mt-1">▸</span>
                       {obj}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            )}
+
+            {(project.type || project.location || project.rewardXp || project.difficulty) && (
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.25 }}
+                className="gta-card p-5"
+              >
+                <h4 className="font-bebas text-xl text-gta-orange mb-4">Mission Info</h4>
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div>
+                    <p className="font-rajdhani uppercase text-text-dim tracking-wider">Type</p>
+                    <p className="text-text-primary">{project.type || 'Classified'}</p>
+                  </div>
+                  <div>
+                    <p className="font-rajdhani uppercase text-text-dim tracking-wider">Location</p>
+                    <p className="text-text-primary">{project.location || 'Undisclosed'}</p>
+                  </div>
+                  <div>
+                    <p className="font-rajdhani uppercase text-text-dim tracking-wider">Reward</p>
+                    <p className="text-gta-teal font-semibold">+ XP {project.rewardXp || 0}</p>
+                  </div>
+                  <div>
+                    <p className="font-rajdhani uppercase text-text-dim tracking-wider">Threat Level</p>
+                    <p className="text-text-primary">{threatLevel}</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {project.intel?.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.28 }}
+                className="gta-card p-5"
+              >
+                <h4 className="font-bebas text-xl text-gta-orange mb-3">Intel</h4>
+                <ul className="space-y-2">
+                  {project.intel.map((line, idx) => (
+                    <li key={`${line}-${idx}`} className="flex items-start gap-2 text-text-secondary text-sm">
+                      <span className="text-gta-teal mt-1">▸</span>
+                      {line}
                     </li>
                   ))}
                 </ul>

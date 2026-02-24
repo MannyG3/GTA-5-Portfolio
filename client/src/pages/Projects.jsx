@@ -4,6 +4,7 @@ import { Filter } from 'lucide-react';
 import { projectsAPI } from '../services/api';
 import SectionTitle from '../components/SectionTitle';
 import MissionCard from '../components/MissionCard';
+import { fallbackMissions } from '../data/missions';
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
@@ -14,9 +15,11 @@ const Projects = () => {
     const fetchProjects = async () => {
       try {
         const response = await projectsAPI.getAll();
-        setProjects(response.data);
+        const apiProjects = Array.isArray(response.data) ? response.data : [];
+        setProjects(apiProjects.length > 0 ? apiProjects : fallbackMissions);
       } catch (error) {
         console.error('Failed to fetch projects:', error);
+        setProjects(fallbackMissions);
       } finally {
         setLoading(false);
       }
@@ -71,7 +74,7 @@ const Projects = () => {
         {filteredProjects.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProjects.map((project, index) => (
-              <MissionCard key={project._id} project={project} index={index} />
+              <MissionCard key={project._id || project.slug || index} project={project} index={index} />
             ))}
           </div>
         ) : (

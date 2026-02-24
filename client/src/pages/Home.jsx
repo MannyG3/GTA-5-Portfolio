@@ -29,7 +29,7 @@ const Home = () => {
     <div className="min-h-screen flex flex-col">
       {/* Hero Section */}
       <section className="relative flex-1 flex items-center justify-center min-h-screen px-4">
-        {/* Vice City tropical gradient background */}
+        {/* Los Santos tropical gradient background */}
         <div className="absolute inset-0 bg-gradient-to-b from-gta-sky/10 via-transparent to-gta-purple/10" />
         
         {/* Animated background elements */}
@@ -77,7 +77,7 @@ const Home = () => {
           >
             <MapPin className="w-4 h-4 text-gta-pink" />
             <span className="font-rajdhani text-gta-pink text-sm tracking-widest uppercase">
-              Welcome to Vice City
+              Welcome to Los Santos
             </span>
           </motion.div>
 
@@ -137,7 +137,7 @@ const Home = () => {
           </motion.div>
         </motion.div>
 
-        {/* Corner decorations - Vice City colors */}
+        {/* Corner decorations - Los Santos colors */}
         <div className="absolute top-20 left-4 md:left-8 w-20 h-20 border-l-2 border-t-2 border-gta-pink/30" />
         <div className="absolute top-20 right-4 md:right-8 w-20 h-20 border-r-2 border-t-2 border-gta-teal/30" />
         <div className="absolute bottom-20 left-4 md:left-8 w-20 h-20 border-l-2 border-b-2 border-gta-teal/30" />

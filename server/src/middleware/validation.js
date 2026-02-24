@@ -41,12 +41,18 @@ export const skillSchema = z.object({
 
 // Project schemas
 export const projectSchema = z.object({
+  code: z.string().max(30).optional(),
+  codename: z.string().max(100).optional(),
+  type: z.string().max(50).optional(),
+  location: z.string().max(100).optional(),
+  rewardXp: z.number().min(0).max(1000000).optional(),
   title: z.string().min(1).max(100),
   shortDesc: z.string().min(1).max(200),
   fullDesc: z.string().max(5000).optional(),
   tags: z.array(z.string()).optional(),
   difficulty: z.number().min(1).max(5).optional(),
   objectives: z.array(z.string()).optional(),
+  intel: z.array(z.string()).optional(),
   challenges: z.array(z.string()).optional(),
   role: z.string().max(100).optional(),
   outcome: z.string().max(1000).optional(),
@@ -55,6 +61,7 @@ export const projectSchema = z.object({
   githubUrl: z.string().url().or(z.literal('')).optional(),
   liveUrl: z.string().url().or(z.literal('')).optional(),
   featured: z.boolean().optional(),
+  progress: z.number().min(0).max(1).optional(),
   status: z.enum(['completed', 'in-progress', 'planned']).optional()
 });
 

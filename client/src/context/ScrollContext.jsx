@@ -20,8 +20,8 @@ export const ScrollProvider = ({ children }) => {
       const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
       setScrollProgress(progress);
       
-      // Calculate wanted level (1-5 stars based on scroll)
-      const level = Math.min(5, Math.ceil(progress / 20));
+      // Calculate wanted level (strict 1-5 stars based on scroll)
+      const level = Math.max(1, Math.min(5, Math.ceil(progress / 20)));
       setWantedLevel(level);
     };
 

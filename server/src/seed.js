@@ -114,17 +114,25 @@ Skill Tree & Assets
     // Create Projects
     await Project.insertMany([
       {
+        code: 'MISSION 01',
+        codename: 'Operation: ORBITAL WATCH',
         title: 'Space Traffic Dashboard',
+        type: 'Dashboard',
+        location: 'Los Santos HQ',
+        rewardXp: 5000,
         slug: 'space-traffic-dashboard',
-        shortDesc: 'Real-time satellite monitoring and collision detection system with interactive world map.',
-        fullDesc: 'Built a comprehensive satellite tracking dashboard featuring live satellite positions, collision detection alerts, and an interactive world map with WebSocket updates for real-time data streaming.',
-        tags: ['React', 'Node.js', 'Socket.IO', 'WebSocket', 'MapBox'],
+        shortDesc: 'A live satellite-tracking command center. Monitor objects in orbit, visualize risk zones, and keep collisions from turning into chaos.',
+        fullDesc: 'A live satellite-tracking command center. Monitor objects in orbit, visualize risk zones, and keep collisions from turning into chaos.',
+        tags: ['FastAPI', 'WebSockets', 'Dashboard UI', 'Vercel'],
         difficulty: 5,
         objectives: [
-          'Live satellite tracking visualization',
-          'Collision detection alerts',
-          'Interactive world map integration',
-          'Real-time WebSocket updates'
+          'Track satellites and live positions',
+          'Visualize risk zones and alerts',
+          'Deliver a responsive real-time dashboard'
+        ],
+        intel: [
+          'Live updates powered by WebSockets',
+          'Clean dashboard UI with responsive layout'
         ],
         challenges: [
           'Processing large volumes of satellite data',
@@ -134,23 +142,32 @@ Skill Tree & Assets
         role: 'Full Stack Developer',
         outcome: 'Successfully deployed dashboard providing real-time orbital monitoring.',
         screenshots: [],
-        githubUrl: '',
+        githubUrl: 'https://github.com/MannyG3/space-traffic-dashboard',
         liveUrl: 'https://space-traffic-dashboard.vercel.app',
         featured: true,
+        progress: 0.9,
         status: 'completed'
       },
       {
+        code: 'MISSION 03',
+        codename: 'Operation: GREEN YIELD',
         title: 'Crop & Fertilizer Recommendation',
+        type: 'ML System',
+        location: 'Rural Ops',
+        rewardXp: 4500,
         slug: 'crop-fertilizer-recommendation',
-        shortDesc: 'ML-powered system for optimal crop and fertilizer recommendations.',
-        fullDesc: 'Developed a machine learning system that recommends optimal crops and fertilizers based on soil nutrients, pH levels, moisture content, and climate data to help farmers maximize yield.',
-        tags: ['Python', 'Machine Learning', 'Scikit-learn', 'Flask', 'Pandas'],
+        shortDesc: 'Turn raw soil data into smart decisions. Recommend the best crop and fertilizer plan — fast, accurate, and easy to use.',
+        fullDesc: 'Turn raw soil data into smart decisions. Recommend the best crop and fertilizer plan — fast, accurate, and easy to use.',
+        tags: ['Python', 'Machine Learning', 'Flask/Streamlit', 'Pandas'],
         difficulty: 4,
         objectives: [
-          'Analyze soil nutrient composition',
-          'Process climate and weather data',
-          'Train ML models for predictions',
-          'Build user-friendly interface'
+          'Recommend best crop using input conditions',
+          'Suggest suitable fertilizers',
+          'Show clear results with a simple UI'
+        ],
+        intel: [
+          'ML-based recommendation workflow',
+          'Simple results UI for quick decisions'
         ],
         challenges: [
           'Handling diverse soil types',
@@ -163,6 +180,7 @@ Skill Tree & Assets
         githubUrl: 'https://github.com/MannyG3/Crop-and-fertilizer-recommendation',
         liveUrl: '',
         featured: true,
+        progress: 1,
         status: 'completed'
       },
       {
@@ -192,17 +210,25 @@ Skill Tree & Assets
         status: 'completed'
       },
       {
+        code: 'MISSION 02',
+        codename: 'Operation: KETTLE HEAT',
         title: 'Kettle',
+        type: 'Web App',
+        location: 'Downtown Studio',
+        rewardXp: 4200,
         slug: 'kettle',
-        shortDesc: 'Full-stack TypeScript application with PostgreSQL-backed logic.',
-        fullDesc: 'Built a production-ready TypeScript-first application with PostgreSQL database, featuring clean architecture and production deployment on Vercel.',
-        tags: ['TypeScript', 'PostgreSQL', 'Node.js', 'React', 'Prisma'],
+        shortDesc: 'A premium brand launch in the city — clean UI, smooth flow, and fast performance. Build the identity, ship the site, keep it sharp.',
+        fullDesc: 'A premium brand launch in the city — clean UI, smooth flow, and fast performance. Build the identity, ship the site, keep it sharp.',
+        tags: ['Next.js', 'TypeScript', 'Tailwind', 'Vercel'],
         difficulty: 4,
         objectives: [
-          'TypeScript-first architecture',
-          'PostgreSQL-backed data layer',
-          'Production deployment setup',
-          'Clean code patterns'
+          'Premium landing + responsive layout',
+          'Clean information architecture',
+          'Deploy-ready structure with smooth UX'
+        ],
+        intel: [
+          'Performance-focused Next.js setup',
+          'Brand-first UI with mobile responsiveness'
         ],
         challenges: [
           'Type-safe database operations',
@@ -213,9 +239,10 @@ Skill Tree & Assets
         outcome: 'Deployed production application with type-safe codebase.',
         screenshots: [],
         githubUrl: 'https://github.com/MannyG3/Kettle',
-        liveUrl: '',
+        liveUrl: 'https://usekettle.vercel.app/',
         featured: false,
-        status: 'completed'
+        progress: 0.6,
+        status: 'in-progress'
       },
       {
         title: 'Be My Valentine',

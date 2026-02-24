@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // GTA VI Vice City Tropical Palette
+        // GTA VI Los Santos Tropical Palette
         gta: {
           // Base colors - darker for contrast with bright accents
           bg: '#0A1628',

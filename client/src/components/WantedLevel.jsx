@@ -12,7 +12,7 @@ const WantedLevel = ({ compact = false }) => {
           key={level}
           className={`${compact ? 'w-4 h-4' : 'w-5 h-5'} transition-all duration-300 ${
             level <= wantedLevel
-              ? 'wanted-star active fill-current'
+              ? `wanted-star active fill-current ${isHighLevel ? 'police-pulse' : ''}`
               : 'wanted-star inactive'
           }`}
           style={level <= wantedLevel ? {

@@ -16,6 +16,7 @@ const navLinks = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDesktopOpen, setIsDesktopOpen] = useState(true);
   const location = useLocation();
 
   const isActive = (path) => {
@@ -26,58 +27,64 @@ const Navbar = () => {
   return (
     <>
       {/* Desktop Navigation - GTA Pause Menu Style */}
-      <nav className="fixed top-4 right-4 z-50 hidden lg:block">
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="relative"
+      <nav className="fixed top-4 right-20 z-50 hidden lg:block">
+        <button
+          onClick={() => setIsDesktopOpen((prev) => !prev)}
+          className="mb-3 ml-auto flex items-center gap-2 px-3 py-2 bg-black/55 border border-white/25 rounded-[12px] text-white hover:text-gta-orange hover:border-gta-orange/60 transition-colors duration-200"
         >
-          <div className="bg-black/65 backdrop-blur-sm border border-white/20 p-4 w-56 shadow-2xl">
-            {/* Header with glow */}
-            <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/15">
-              <Map className="w-4 h-4 text-white" />
-              <span className="font-rajdhani text-sm text-white uppercase tracking-widest">
-                Pause Menu
-              </span>
-            </div>
+          {isDesktopOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+          <span className="font-rajdhani text-xs uppercase tracking-[0.22em]">Pause</span>
+        </button>
 
-            {/* Nav links */}
-            <ul className="space-y-1">
-              {navLinks.map((link) => {
-                const Icon = link.icon;
-                const active = isActive(link.path);
-                
-                return (
-                  <li key={link.path}>
-                    <Link
-                      to={link.path}
-                      className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group ${
-                        active
-                          ? 'bg-white/10 text-gta-orange'
-                          : 'text-white hover:text-gta-orange hover:bg-white/10'
-                      }`}
-                    >
-                      <Icon className={`w-4 h-4 ${active ? 'text-gta-orange' : ''}`} />
-                      <span className="font-rajdhani text-sm tracking-wide">{link.label}</span>
-                      {active && (
-                        <motion.div
-                          layoutId="activeIndicator"
-                          className="ml-auto w-2 h-2 rounded-full bg-gta-orange shadow-lg"
-                          style={{ boxShadow: '0 0 10px #FFB35C' }}
-                        />
-                      )}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
+        <AnimatePresence>
+          {isDesktopOpen && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 backdrop-blur-[2px] bg-black/10 -z-10"
+              />
 
-            {/* Wanted Level */}
-            <div className="mt-4 pt-3 border-t border-white/15">
-              <WantedLevel />
-            </div>
-          </div>
-        </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 26, y: -8 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                exit={{ opacity: 0, x: 26, y: -8 }}
+                transition={{ duration: 0.18, ease: 'easeOut' }}
+                className="relative"
+              >
+                <div className="pause-panel rounded-[18px] p-4 w-60">
+                  <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/15">
+                    <Map className="w-4 h-4 text-white/90" />
+                    <span className="pause-title text-white">PAUSE MENU</span>
+                  </div>
+
+                  <ul className="space-y-1">
+                    {navLinks.map((link) => {
+                      const Icon = link.icon;
+                      const active = isActive(link.path);
+
+                      return (
+                        <li key={link.path}>
+                          <Link to={link.path} className={`pause-menu-row ${active ? 'active' : ''}`}>
+                            <span className={`pause-left-bar ${active ? 'on' : ''}`} />
+                            <Icon className={`w-4 h-4 transition-colors duration-200 ${active ? 'text-gta-orange' : 'text-white/85'}`} />
+                            <span className="pause-item-text">{link.label}</span>
+                            <span className={`pause-dot ${active ? 'on' : ''}`} />
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+
+                  <div className="mt-4 pt-3 border-t border-white/15">
+                    <WantedLevel />
+                  </div>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Mobile Navigation */}
@@ -124,14 +131,12 @@ const Navbar = () => {
                       <Link
                         to={link.path}
                         onClick={() => setIsOpen(false)}
-                        className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
-                          active
-                            ? 'bg-white/10 text-gta-orange'
-                            : 'text-white hover:text-gta-orange hover:bg-white/10'
-                        }`}
+                        className={`pause-menu-row ${active ? 'active' : ''}`}
                       >
-                        <Icon className={`w-5 h-5 ${active ? 'text-gta-orange' : ''}`} />
-                        <span className="font-rajdhani text-lg tracking-wide">{link.label}</span>
+                        <span className={`pause-left-bar ${active ? 'on' : ''}`} />
+                        <Icon className={`w-5 h-5 ${active ? 'text-gta-orange' : 'text-white/85'}`} />
+                        <span className="pause-item-text text-base">{link.label}</span>
+                        <span className={`pause-dot ${active ? 'on' : ''}`} />
                       </Link>
                     </li>
                   );

@@ -2,6 +2,31 @@ import mongoose from 'mongoose';
 import slugify from 'slugify';
 
 const projectSchema = new mongoose.Schema({
+  code: {
+    type: String,
+    trim: true,
+    default: ''
+  },
+  codename: {
+    type: String,
+    trim: true,
+    default: ''
+  },
+  type: {
+    type: String,
+    trim: true,
+    default: ''
+  },
+  location: {
+    type: String,
+    trim: true,
+    default: ''
+  },
+  rewardXp: {
+    type: Number,
+    min: 0,
+    default: 0
+  },
   title: {
     type: String,
     required: [true, 'Title is required'],
@@ -30,6 +55,9 @@ const projectSchema = new mongoose.Schema({
     default: 3
   },
   objectives: [{
+    type: String
+  }],
+  intel: [{
     type: String
   }],
   challenges: [{
@@ -61,6 +89,12 @@ const projectSchema = new mongoose.Schema({
   featured: {
     type: Boolean,
     default: false
+  },
+  progress: {
+    type: Number,
+    min: 0,
+    max: 1,
+    default: 0
   },
   status: {
     type: String,

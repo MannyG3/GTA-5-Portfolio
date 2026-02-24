@@ -13,8 +13,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
           <Link to="/" className="font-bebas text-2xl tracking-wider group flex items-center gap-1">
-            <span className="text-gta-pink group-hover:text-gta-coral transition-colors">VICE</span>
-            <span className="text-gta-teal group-hover:text-gta-tealLight transition-colors">CITY</span>
+            <span className="text-gta-pink group-hover:text-gta-coral transition-colors">LOS</span>
+            <span className="text-gta-teal group-hover:text-gta-tealLight transition-colors">SANTOS</span>
             <span className="text-text-muted ml-1">PORTFOLIO</span>
           </Link>
 
@@ -48,7 +48,7 @@ const Footer = () => {
           <p className="text-text-dim text-sm flex items-center gap-1.5 font-rajdhani">
             © {currentYear} Made with 
             <Heart className="w-4 h-4 text-gta-pink animate-pulse" style={{ animationDuration: '2s' }} /> 
-            in Vice City
+            in Los Santos
           </p>
         </div>
       </div>

@@ -1,168 +1,138 @@
-import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, Briefcase, GraduationCap, Users } from 'lucide-react';
-import { experienceAPI } from '../services/api';
 import SectionTitle from '../components/SectionTitle';
 
-const typeIcons = {
-  Job: Briefcase,
-  Internship: Briefcase,
-  Freelance: Briefcase,
-  Education: GraduationCap,
-  Club: Users,
-  Volunteer: Users,
-};
-
-const typeStyles = {
-  Job: 'bg-gta-orange/20 text-gta-orange',
-  Internship: 'bg-gta-teal/20 text-gta-teal',
-  Freelance: 'bg-gta-yellow/20 text-gta-yellow',
-  Education: 'bg-gta-peach/20 text-gta-peach',
-  Club: 'bg-gta-blue/20 text-gta-blue',
-  Volunteer: 'bg-gta-teal/20 text-gta-teal',
-};
+const experiences = [
+  {
+    id: 'exp1',
+    status: 'CURRENT',
+    years: '2024 - Present',
+    role: 'Fullstack Developer (MERN) & Training + Placement Officer (TPO)',
+    org: 'RIT Polytechnic, Pune',
+    summary:
+      'Leading development and student career outcomes in parallel — building internal systems, mentoring students, and driving placement readiness.',
+    bullets: [
+      'Built and maintained college-level web solutions using MERN with clean, scalable architecture',
+      'Delivered hands-on training in OOP with Python, Client-Side Scripting, and Data Structures',
+      'Designed industry-oriented practical sessions, mini-projects, and real-world assignments',
+      'Planned and organized placement drives, aptitude training, and interview preparation sessions',
+      'Managed the RedHat Lab (20 PCs + network infrastructure) and ensured smooth operations',
+      'Conducted AI-focused events, workshops, and technical bootcamps for student upskilling',
+    ],
+  },
+  {
+    id: 'exp2',
+    status: 'PAST',
+    years: '2022 - 2023',
+    role: 'Full Stack Developer Intern',
+    org: 'ByteEagle Infotech',
+    summary:
+      'Built production-style features in a team setting and strengthened full-stack engineering discipline.',
+    bullets: [
+      'Built web apps using React, Node.js, Express, and MongoDB (MERN stack)',
+      'Developed and integrated RESTful APIs with proper validation and error handling',
+      'Created reusable React components to improve UI consistency and developer speed',
+      'Worked in an agile team with sprint planning, task tracking, and code reviews',
+      'Focused on scalability, performance, and clean code practices',
+    ],
+  },
+];
 
 const Experience = () => {
-  const [experiences, setExperiences] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchExperiences = async () => {
-      try {
-        const response = await experienceAPI.getAll();
-        setExperiences(response.data);
-      } catch (error) {
-        console.error('Failed to fetch experiences:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchExperiences();
-  }, []);
-
-  const formatDate = (date) => {
-    if (!date) return 'Present';
-    return new Date(date).toLocaleDateString('en-US', { 
-      month: 'short', 
-      year: 'numeric' 
-    });
-  };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="font-rajdhani text-gta-orange">Loading story mode...</div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen pt-20 lg:pt-8 pb-16">
-      <div className="max-w-4xl mx-auto px-4">
-        <SectionTitle 
-          title="Story Mode" 
-          subtitle="Journey through the career timeline"
+      <div className="max-w-6xl mx-auto px-4">
+        <SectionTitle
+          title="Career Story"
+          subtitle="Two chapters. One mission-driven trajectory."
         />
 
-        {/* Timeline */}
         <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-gta-orange via-gta-teal to-gta-peach" />
+          <div className="hidden md:block absolute left-[33.1%] top-0 bottom-0 w-px bg-gradient-to-b from-gta-orange via-gta-teal to-gta-orange/40" />
 
-          {experiences.map((exp, index) => {
-            const Icon = typeIcons[exp.type] || Briefcase;
-            const badgeClass = typeStyles[exp.type] || 'bg-gta-orange/20 text-gta-orange';
-            const isLeft = index % 2 === 0;
+          <div className="space-y-6 md:space-y-8">
+            {experiences.map((experience, index) => {
+              const chapter = `Chapter ${String(index + 1).padStart(2, '0')}`;
+              const isCurrent = experience.status === 'CURRENT';
 
-            return (
-              <motion.div
-                key={exp._id}
-                initial={{ opacity: 0, x: isLeft ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className={`relative flex ${
-                  isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
-                } gap-8 mb-12`}
-              >
-                {/* Timeline dot */}
-                <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-gta-bg border-2 border-gta-orange z-10" />
-
-                {/* Content */}
-                <div className={`ml-12 md:ml-0 md:w-1/2 ${isLeft ? 'md:pr-12' : 'md:pl-12'}`}>
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    className="gta-card p-6"
-                  >
-                    {/* Type badge */}
-                    <div className={`inline-flex items-center gap-2 px-3 py-1 rounded text-sm font-rajdhani mb-4 ${badgeClass}`}>
-                      <Icon className="w-4 h-4" />
-                      {exp.type}
+              return (
+                <motion.article
+                  key={experience.id}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08, duration: 0.35 }}
+                  whileHover={{ x: 2 }}
+                  className="grid grid-cols-1 md:grid-cols-[220px_48px_1fr] gap-4 md:gap-6"
+                >
+                  <div className="gta-card border border-[#263040] bg-gta-surface/75 backdrop-blur-md p-4 md:p-5">
+                    <p className="font-rajdhani text-[11px] uppercase tracking-[0.25em] text-gta-orange/80 mb-3">
+                      {chapter}
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <span className="px-2.5 py-1 text-[11px] font-rajdhani font-bold tracking-wider uppercase bg-gta-surfaceAlt/80 text-text-secondary border border-[#263040]">
+                        Story
+                      </span>
+                      <span
+                        className={`px-2.5 py-1 text-[11px] font-rajdhani font-bold tracking-wider uppercase ${
+                          isCurrent
+                            ? 'bg-gta-orange text-gta-bg'
+                            : 'bg-gta-teal/85 text-gta-bg'
+                        }`}
+                      >
+                        {experience.status}
+                      </span>
                     </div>
+                    <p className="font-rajdhani text-sm text-text-dim mt-3">{experience.years}</p>
+                  </div>
 
-                    {/* Title & Org */}
-                    <h3 className="font-bebas text-2xl text-text-primary mb-1">
-                      {exp.title}
+                  <div className="relative hidden md:flex items-start justify-center">
+                    <span className="mt-6 h-4 w-4 rounded-full border-2 border-gta-orange bg-gta-bg shadow-[0_0_0_4px_rgba(25,194,199,0.12),0_0_12px_rgba(255,179,92,0.35)]" />
+                  </div>
+
+                  <div className="gta-card border border-[#263040] bg-gta-surface/70 backdrop-blur-md p-5 md:p-6 hover:border-gta-orange/40 transition-all duration-300">
+                    <h3 className="font-bebas text-2xl md:text-3xl text-text-primary tracking-wide leading-tight mb-1">
+                      {experience.role}
                     </h3>
-                    <p className="font-rajdhani text-gta-teal mb-3">
-                      {exp.org}
+                    <p className="font-rajdhani text-gta-teal text-base mb-1">{experience.org}</p>
+                    <p className="font-rajdhani text-xs uppercase tracking-[0.25em] text-text-dim mb-4">
+                      {experience.years}
                     </p>
 
-                    {/* Date & Location */}
-                    <div className="flex flex-wrap gap-4 text-sm text-text-muted mb-4">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        <span>
-                          {formatDate(exp.startDate)} — {formatDate(exp.endDate)}
-                        </span>
-                      </div>
-                      {exp.location && (
-                        <div className="flex items-center gap-1">
-                          <MapPin className="w-4 h-4" />
-                          <span>{exp.location}</span>
-                        </div>
-                      )}
-                    </div>
+                    <p className="text-text-secondary leading-relaxed mb-4">{experience.summary}</p>
 
-                    {/* Description */}
-                    {exp.description && (
-                      <p className="text-text-secondary text-sm mb-4">
-                        {exp.description}
-                      </p>
-                    )}
-
-                    {/* Highlights */}
-                    {exp.highlights?.length > 0 && (
-                      <ul className="space-y-1">
-                        {exp.highlights.map((highlight, i) => (
-                          <li key={i} className="flex items-start gap-2 text-sm text-text-muted">
-                            <span className="text-gta-orange mt-1">▸</span>
-                            {highlight}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </motion.div>
-                </div>
-
-                {/* Spacer for other side */}
-                <div className="hidden md:block md:w-1/2" />
-              </motion.div>
-            );
-          })}
+                    <ul className="space-y-2.5">
+                      {experience.bullets.map((point) => (
+                        <li key={point} className="flex items-start gap-2 text-sm text-text-secondary">
+                          <span className="text-gta-orange mt-1">▸</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
         </div>
 
-        {experiences.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-16"
-          >
-            <p className="font-rajdhani text-xl text-text-dim">
-              No experience entries yet.
-            </p>
-          </motion.div>
-        )}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="mt-12 gta-card border border-[#263040] bg-gta-surface/75 backdrop-blur-md p-6 md:p-8 text-center"
+        >
+          <h3 className="font-bebas text-3xl md:text-4xl text-text-primary tracking-wide mb-2">
+            Want to work together?
+          </h3>
+          <p className="font-rajdhani text-text-muted text-lg mb-6">
+            I'm always open to new opportunities
+          </p>
+          <Link to="/contact" className="gta-btn-primary inline-flex">
+            Get in Touch
+          </Link>
+        </motion.div>
       </div>
     </div>
   );
