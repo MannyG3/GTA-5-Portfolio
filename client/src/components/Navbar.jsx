@@ -25,20 +25,19 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Desktop Navigation - Vice City Phone Style */}
+      {/* Desktop Navigation - GTA Pause Menu Style */}
       <nav className="fixed top-4 right-4 z-50 hidden lg:block">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           className="relative"
         >
-          {/* Phone-style container */}
-          <div className="bg-gta-surface/95 backdrop-blur-md border border-gta-teal/20 rounded-xl p-4 w-52 shadow-2xl">
+          <div className="bg-black/65 backdrop-blur-sm border border-white/20 p-4 w-56 shadow-2xl">
             {/* Header with glow */}
-            <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gta-teal/20">
-              <Map className="w-4 h-4 text-gta-pink" />
-              <span className="font-rajdhani text-sm text-gta-pink uppercase tracking-widest">
-                Navigation
+            <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/15">
+              <Map className="w-4 h-4 text-white" />
+              <span className="font-rajdhani text-sm text-white uppercase tracking-widest">
+                Pause Menu
               </span>
             </div>
 
@@ -54,17 +53,17 @@ const Navbar = () => {
                       to={link.path}
                       className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group ${
                         active
-                          ? 'bg-gradient-to-r from-gta-teal/20 to-gta-pink/10 text-gta-teal'
-                          : 'text-text-muted hover:text-gta-pink hover:bg-gta-pink/10'
+                          ? 'bg-white/10 text-gta-orange'
+                          : 'text-white hover:text-gta-orange hover:bg-white/10'
                       }`}
                     >
-                      <Icon className={`w-4 h-4 ${active ? 'text-gta-teal' : ''}`} />
+                      <Icon className={`w-4 h-4 ${active ? 'text-gta-orange' : ''}`} />
                       <span className="font-rajdhani text-sm tracking-wide">{link.label}</span>
                       {active && (
                         <motion.div
                           layoutId="activeIndicator"
-                          className="ml-auto w-2 h-2 rounded-full bg-gta-teal shadow-lg"
-                          style={{ boxShadow: '0 0 10px #6BBFB5' }}
+                          className="ml-auto w-2 h-2 rounded-full bg-gta-orange shadow-lg"
+                          style={{ boxShadow: '0 0 10px #FFB35C' }}
                         />
                       )}
                     </Link>
@@ -74,7 +73,7 @@ const Navbar = () => {
             </ul>
 
             {/* Wanted Level */}
-            <div className="mt-4 pt-3 border-t border-gta-surfaceAlt">
+            <div className="mt-4 pt-3 border-t border-white/15">
               <WantedLevel />
             </div>
           </div>
@@ -83,12 +82,12 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 lg:hidden">
-        <div className="bg-gta-surface/95 backdrop-blur-md border-b border-gta-teal/20">
+        <div className="bg-black/75 backdrop-blur-sm border-b border-white/20">
           <div className="flex items-center justify-between px-4 py-3">
             {/* Logo */}
             <Link to="/" className="font-bebas text-2xl tracking-wider">
-              <span className="text-gta-pink">VICE</span>
-              <span className="text-gta-teal ml-1">CITY</span>
+              <span className="text-white">GRAND</span>
+              <span className="text-gta-orange ml-1">PORTFOLIO</span>
             </Link>
 
             {/* Wanted Level (mobile) */}
@@ -98,7 +97,7 @@ const Navbar = () => {
               {/* Menu button */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="p-2 text-gta-pink hover:bg-gta-pink/10 rounded-lg transition-colors"
+                className="p-2 text-white hover:text-gta-orange hover:bg-white/10 rounded-lg transition-colors"
               >
                 {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
@@ -113,7 +112,7 @@ const Navbar = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="bg-gta-surface/98 backdrop-blur-md border-b border-gta-teal/20"
+              className="bg-black/90 backdrop-blur-sm border-b border-white/20"
             >
               <ul className="px-4 py-4 space-y-2">
                 {navLinks.map((link) => {
@@ -127,11 +126,11 @@ const Navbar = () => {
                         onClick={() => setIsOpen(false)}
                         className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
                           active
-                            ? 'bg-gradient-to-r from-gta-teal/20 to-gta-pink/10 text-gta-teal'
-                            : 'text-text-muted hover:text-gta-pink hover:bg-gta-pink/10'
+                            ? 'bg-white/10 text-gta-orange'
+                            : 'text-white hover:text-gta-orange hover:bg-white/10'
                         }`}
                       >
-                        <Icon className={`w-5 h-5 ${active ? 'text-gta-teal' : ''}`} />
+                        <Icon className={`w-5 h-5 ${active ? 'text-gta-orange' : ''}`} />
                         <span className="font-rajdhani text-lg tracking-wide">{link.label}</span>
                       </Link>
                     </li>

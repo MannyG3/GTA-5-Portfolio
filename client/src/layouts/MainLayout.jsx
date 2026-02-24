@@ -28,6 +28,9 @@ const MainLayout = () => {
       
       {/* Vignette */}
       <div className="vignette-overlay" />
+
+      {/* Chromatic aberration */}
+      <div className="chromatic-aberration" />
       
       {/* Navigation */}
       <Navbar />

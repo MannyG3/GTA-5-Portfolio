@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 
-const LoadingScreen = () => {
+const LoadingScreen = ({ onStart }) => {
+  const panels = ['/images/gta-bg.jpg', '/images/gta-bg.jpg', '/images/gta-bg.jpg'];
+
   return (
     <motion.div
       className="loading-screen"
@@ -8,8 +10,21 @@ const LoadingScreen = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Background with tropical gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gta-sky/20 via-gta-bg to-gta-purple/20" />
+      <motion.div
+        className="loading-art-strip"
+        animate={{ x: ['0%', '-33.3333%', '-66.6666%'] }}
+        transition={{ duration: 14, ease: 'linear', repeat: Infinity, repeatType: 'reverse' }}
+      >
+        {panels.map((panel, index) => (
+          <div
+            key={`${panel}-${index}`}
+            className="loading-art-panel"
+            style={{ backgroundImage: `url(${panel})` }}
+          />
+        ))}
+      </motion.div>
+
+      <div className="absolute inset-0 bg-black/55" />
       
       {/* Grain overlay */}
       <div className="grain-overlay" />
@@ -22,18 +37,17 @@ const LoadingScreen = () => {
       
       {/* Main content */}
       <div className="relative z-10 text-center">
-        {/* Vice City style loading text */}
+        {/* GTA style loading text */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <h1 className="font-bebas text-6xl md:text-8xl tracking-tight mb-2">
-            <span className="text-gta-pink" style={{ textShadow: '0 0 30px rgba(232, 164, 184, 0.5)' }}>VICE</span>
-            <span className="text-gta-teal ml-3" style={{ textShadow: '0 0 30px rgba(107, 191, 181, 0.5)' }}>CITY</span>
+          <h1 className="font-bebas text-6xl md:text-8xl tracking-tight mb-2 text-white">
+            GRAND THEFT AUTO
           </h1>
           <p className="font-rajdhani text-xl md:text-2xl text-text-muted tracking-[0.3em] uppercase">
-            Loading Portfolio
+            Portfolio Mode
           </p>
         </motion.div>
 
@@ -54,15 +68,27 @@ const LoadingScreen = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
         >
-          Welcome to Vice City, enjoy the sunshine...
+          Press Start to enter Los Santos
         </motion.p>
+
+        <motion.button
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.1 }}
+          onClick={onStart}
+          className="mt-6 px-8 py-3 bg-black/70 border border-white/40 text-white font-rajdhani uppercase tracking-wider hover:border-gta-orange hover:text-gta-orange transition-colors"
+        >
+          Start Experience
+        </motion.button>
       </div>
 
+      <div className="loading-spinner" aria-hidden="true" />
+
       {/* Corner decorations - Pink/Teal */}
-      <div className="absolute top-6 left-6 w-20 h-20 border-l-2 border-t-2 border-gta-pink/30" />
+      <div className="absolute top-6 left-6 w-20 h-20 border-l-2 border-t-2 border-gta-orange/30" />
       <div className="absolute top-6 right-6 w-20 h-20 border-r-2 border-t-2 border-gta-teal/30" />
       <div className="absolute bottom-6 left-6 w-20 h-20 border-l-2 border-b-2 border-gta-teal/30" />
-      <div className="absolute bottom-6 right-6 w-20 h-20 border-r-2 border-b-2 border-gta-pink/30" />
+      <div className="absolute bottom-6 right-6 w-20 h-20 border-r-2 border-b-2 border-gta-orange/30" />
     </motion.div>
   );
 };

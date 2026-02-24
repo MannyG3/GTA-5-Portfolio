@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 // Layouts
 import MainLayout from './layouts/MainLayout';
@@ -30,25 +30,24 @@ import ManageMessages from './pages/admin/ManageMessages';
 // Components
 import LoadingScreen from './components/LoadingScreen';
 import ProtectedRoute from './components/ProtectedRoute';
+import AudioToggle from './components/AudioToggle';
 
 // Context
 import { AuthProvider } from './context/AuthContext';
 import { ScrollProvider } from './context/ScrollContext';
+import { useGlobalAudio } from './context/AudioContext';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const { startAudio } = useGlobalAudio();
 
-  useEffect(() => {
-    // Initial loading screen
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2500);
-
-    return () => clearTimeout(timer);
-  }, []);
+  const handleStartExperience = () => {
+    startAudio();
+    setIsLoading(false);
+  };
 
   if (isLoading) {
-    return <LoadingScreen />;
+    return <LoadingScreen onStart={handleStartExperience} />;
   }
 
   return (
@@ -57,6 +56,7 @@ function App() {
         <Router>
           {/* Noise overlay for GTA effect */}
           <div className="noise-overlay" />
+          <AudioToggle />
           
           {/* Toast notifications */}
           <Toaster
@@ -66,11 +66,11 @@ function App() {
               style: {
                 background: '#0a0a0a',
                 color: '#fff',
-                border: '1px solid rgba(57, 255, 20, 0.3)',
+                border: '1px solid rgba(255, 179, 92, 0.35)',
               },
               success: {
                 iconTheme: {
-                  primary: '#39ff14',
+                  primary: '#ffb35c',
                   secondary: '#0a0a0a',
                 },
               },

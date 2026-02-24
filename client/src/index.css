@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,7 +19,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', 'Poppins', sans-serif;
+  font-family: 'Montserrat', 'Inter', 'Poppins', sans-serif;
   background-color: #0A1628;
   color: #F0F4F8;
   overflow-x: hidden;
@@ -61,7 +62,8 @@ body {
    ============================================ */
 @layer components {
   .gta-title {
-    @apply font-bebas text-4xl md:text-6xl lg:text-8xl tracking-tight uppercase;
+    @apply text-4xl md:text-6xl lg:text-8xl tracking-tight uppercase;
+    font-family: 'Anton', 'Bebas Neue', sans-serif;
     background: linear-gradient(135deg, #6BBFB5 0%, #7DD0C6 50%, #E8A4B8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -354,6 +356,13 @@ body {
     background: radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(11, 13, 16, 0.3) 70%, rgba(11, 13, 16, 0.7) 100%);
   }
 
+  .chromatic-aberration {
+    @apply pointer-events-none fixed inset-0 z-20;
+    background:
+      linear-gradient(90deg, rgba(255, 0, 80, 0.018) 0%, transparent 50%, rgba(0, 180, 255, 0.018) 100%);
+    mix-blend-mode: screen;
+  }
+
   /* Scanlines - subtle */
   .scanlines {
     @apply pointer-events-none fixed inset-0 z-50;
@@ -388,6 +397,21 @@ body {
     background: linear-gradient(135deg, #0A1628 0%, #0F1E32 50%, #0A1628 100%);
   }
 
+  .loading-art-strip {
+    position: absolute;
+    inset: 0;
+    width: 300%;
+    display: flex;
+  }
+
+  .loading-art-panel {
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    filter: saturate(1.25) contrast(1.05);
+  }
+
   .loading-bar-container {
     @apply w-72 h-1.5 bg-gta-darker rounded-full overflow-hidden mt-8;
     border: 1px solid rgba(107, 191, 181, 0.2);
@@ -398,6 +422,19 @@ body {
     background: linear-gradient(90deg, #6BBFB5, #E8A4B8);
     animation: loadingBar 2.5s ease-in-out forwards;
     box-shadow: 0 0 15px rgba(107, 191, 181, 0.5);
+  }
+
+  .loading-spinner {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 38px;
+    height: 38px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #ffb35c;
+    border-radius: 999px;
+    animation: spin 1s linear infinite;
+    z-index: 20;
   }
 
   /* ============================================
@@ -532,6 +569,12 @@ body {
   60% { clip: rect(42px, 9999px, 71px, 0); }
   80% { clip: rect(9px, 9999px, 88px, 0); }
   100% { clip: rect(56px, 9999px, 45px, 0); }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ============================================
